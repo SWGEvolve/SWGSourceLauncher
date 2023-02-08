@@ -1,2 +1,0 @@
-# SWGSourceLauncher
-SWGSource Game Launcher

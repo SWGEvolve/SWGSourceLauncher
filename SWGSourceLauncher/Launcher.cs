@@ -1,27 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SWGSourceLauncher.Services;
 using System.Diagnostics;
 
-namespace SWGSourceLauncher
+namespace SWGSourceLauncher;
+class Launcher
 {
-    class Launcher
+
+    public static void PlayGame()
     {
-        public static void PlayGame()
-        {
-            Process.Start("SwgClient_r.exe");
-        }
 
-        public static void LaunchWebsite(string url)
-        {
-            Process.Start(url);
-        }
+        Process.Start(IniLoader.Instance.Read("GameExe", "General"));
 
-        public static void Update()
-        {
-            Process.Start("UpdateSwgClient.bat");
-        }
     }
+
+    public static void LaunchWebsite()
+    {
+        string url = (IniLoader.Instance.Read("HomepageURL", "General"));
+
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = url,
+            UseShellExecute = true
+        };
+        Process.Start(startInfo);
+    
+    }
+
+    public static void Update()
+    {
+        Process.Start(IniLoader.Instance.Read("Updater", "General"));
+    }
+
+    public static void Config()
+    {
+        Process.Start(IniLoader.Instance.Read("SettingsExe", "General"));
+    }
+
 }

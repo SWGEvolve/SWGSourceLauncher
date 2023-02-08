@@ -5,26 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SWGSourceLauncher"
         mc:Ignorable="d"
-        Title="SWGSource Launcher v0.1" Height="510.596" Width="800.109" Visibility="Visible" WindowStartupLocation="CenterScreen" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" VerticalAlignment="Center" HorizontalAlignment="Center" ResizeMode="NoResize" Icon="swg.png">
+        Title="SWG Source Launcher" 
+        Height="600" 
+        Width="1200"  
+        Visibility="Visible" 
+        WindowStartupLocation="CenterScreen" 
+        HorizontalContentAlignment="Center" 
+        VerticalContentAlignment="Center" 
+        ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+        VerticalAlignment="Center" 
+        HorizontalAlignment="Center"
+        ResizeMode="NoResize" 
+        WindowStyle="ThreeDBorderWindow"
+        ContentRendered="Window_ContentRendered"
+        Icon="/Assets/swg.ico">
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="0"/>
-            <GradientStop Color="White" Offset="1"/>
-            <GradientStop Color="#FF5D5D5D" Offset="1"/>
-        </LinearGradientBrush>
+        <ImageBrush ImageSource="/Assets/swglaunchbg.png"/>
     </Window.Background>
-    <Grid Margin="0,0,0,-9" Background="Black">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="130*"/>
-            <ColumnDefinition Width="217*"/>
-            <ColumnDefinition Width="215*"/>
-            <ColumnDefinition Width="132*"/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <WebBrowser Margin="10,42,10,69" Grid.ColumnSpan="4" Source="https://swg-source.github.io"/>
-        <Button x:Name="LaunchGameButton" Content="Launch Game" Margin="126,438,122,20" Background="#FF27B608" BorderThickness="0" FontWeight="Bold" RenderTransformOrigin="-0.204,0.453" Grid.ColumnSpan="2" Click="LaunchGameButton_Click" Grid.Column="1"/>
-        <Button x:Name="LaunchWebsiteButton" Content="View Website Wiki" Margin="10,438,3,20" Background="#FFDDDDDD" BorderThickness="0" FontWeight="Bold" IsDefault="True" Click="LaunchWebsiteButton_Click"/>
-        <Button x:Name="LaunchUpdatesButton" Content="Check for Updates" Margin="10,438,20,20" Background="#FFDDDDDD" BorderThickness="0" FontWeight="Bold" Grid.Column="3" Click="LaunchUpdatesButton_Click" IsDefault="True" IsEnabled="True"/>
-
+    <Grid x:Name="LauncherWindow">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="475*"/>
+            <RowDefinition Height="109*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="mainLabel" Content="SWGSourceLauncher" Margin="0,0,1032,446" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="14" Height="29" HorizontalAlignment="Right" Width="148" Foreground="{x:Null}"/>
+        <WebBrowser Name="Browser" Margin="20,188,0,0" Source="https://swg-source.github.io" Height="304" VerticalAlignment="Top" HorizontalAlignment="Left" Width="500" Grid.RowSpan="2"/>
+        <Button x:Name="LaunchGameButton" Content="Launch Game" Margin="925,54,20,0" Visibility="Collapsed" Background="#FF27B608" BorderThickness="0" RenderTransformOrigin="-0.204,0.453" Click="LaunchGameButton_Click" Grid.Row="1" HorizontalAlignment="Left" Width="255" Height="34" VerticalAlignment="Top" FontFamily="Impact" FontSize="14"/>
+        <Button x:Name="LaunchWebsiteButton" Content="Website" Margin="1040,0,20,8" Background="#FFDDDDDD" BorderThickness="0" IsDefault="True" Click="LaunchWebsiteButton_Click" FontFamily="Impact" Height="35" VerticalAlignment="Bottom" FontSize="14"/>
+        <Button x:Name="LaunchUninstallButton" Content="Uninstall" Margin="20,55,1041,0" Visibility="Collapsed" Background="#FFDDDDDD" BorderThickness="0" IsDefault="True" Click="LaunchWebsiteButton_Click" FontFamily="Impact" Height="33" VerticalAlignment="Top" FontSize="14" Grid.Row="1"/>
+        <Button x:Name="LaunchConfigButton" Content="Settings" Margin="0,0,20,66" Visibility="Collapsed" Background="#FFDDDDDD" BorderThickness="0" Click="LaunchConfigButton_Click" IsDefault="True" IsEnabled="True" FontFamily="Impact" FontSize="14" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120" Grid.Row="1"/>
+        <Button x:Name="LaunchUpdatesButton" Content="Check for Updates" Margin="20,45,20,0" Background="#FFDDDDDD" BorderThickness="0" Click="LaunchUpdatesButton_Click" IsDefault="True" IsEnabled="True" HorizontalAlignment="Right" Width="1160" Grid.Row="1" Height="34" VerticalAlignment="Top" FontFamily="Impact" FontSize="14"/>
+        <ProgressBar Height="10" Margin="20,89,20,0" Name="progressBar" Grid.Row="1" Visibility="Collapsed" Background="#FF6B6767" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1160"/>
+        <TextBlock Name="VersionText" FontSize="14" Foreground="White" Margin="1120,20,20,440" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
